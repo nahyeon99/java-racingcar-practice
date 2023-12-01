@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class InputUtil {
+
+    private InputUtil() {
+        throw new AssertionError("생성자 호출이 불가합니다.");
+    }
+
     public static int readNumber(String input) {
         try {
             return Integer.parseInt(input);

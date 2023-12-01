@@ -6,6 +6,10 @@ import racingcar.domain.Cars;
 import racingcar.domain.Name;
 
 public class CarsFactory {
+    private CarsFactory() {
+        throw new AssertionError("생성자 호출이 불가합니다.");
+    }
+
     public static Cars of(List<String> carNames) {
         List<Car> cars = createCars(createNames(carNames));
 
