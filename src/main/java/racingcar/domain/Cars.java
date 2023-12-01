@@ -29,8 +29,7 @@ public class Cars {
         Car maxPositionCar = getMaxPositionCar();
 
         return cars.stream()
-                .filter(car -> !maxPositionCar.equals(car) &&
-                        maxPositionCar.isEqualMaxPosition(car))
+                .filter(car -> maxPositionCar.isEqualMaxPosition(car))
                 .map(NameDto::from)
                 .toList();
     }
