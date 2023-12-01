@@ -1,6 +1,9 @@
 package racingcar.domain;
 
+import static racingcar.exception.ExceptionMessage.INVALID_DUPLICATE_NAME;
+
 import java.util.List;
+import java.util.Objects;
 import racingcar.dto.MatchDto;
 import racingcar.dto.NameDto;
 import racingcar.util.MoveTypeGenerator;
@@ -9,6 +12,7 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
+        validateDuplicateName(cars);
         this.cars = cars;
     }
 
@@ -38,5 +42,11 @@ public class Cars {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElse(cars.get(0));
+    }
+
+    private void validateDuplicateName(List<Car> cars) {
+        if (Objects.equals((int) cars.stream().distinct().count(), cars.size())) {
+            throw new IllegalArgumentException(INVALID_DUPLICATE_NAME.getKorean());
+        }
     }
 }

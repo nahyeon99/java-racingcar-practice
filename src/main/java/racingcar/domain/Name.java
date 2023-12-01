@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.exception.ExceptionMessage.INVALID_NAME_FORMAT;
 import static racingcar.exception.ExceptionMessage.INVALID_NAME_SIZE;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +27,23 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Name)) {
+            return false;
+        }
+        Name that = (Name) other;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     private static void validateNameFormat(String name) {
