@@ -7,6 +7,7 @@ import racingcar.dto.NameDto;
 public class OutputView {
 
     public void printResultMessage() {
+        System.out.println();
         System.out.println(OutputMessage.RESULT_MESSAGE.message);
     }
 
