@@ -45,7 +45,12 @@ public class Cars {
     }
 
     private void validateDuplicateName(List<Car> cars) {
-        if (Objects.equals((int) cars.stream().distinct().count(), cars.size())) {
+        int distinctCount = (int) cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+
+        if (distinctCount != cars.size()) {
             throw new IllegalArgumentException(INVALID_DUPLICATE_NAME.getKorean());
         }
     }
