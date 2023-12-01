@@ -24,6 +24,10 @@ public class Name {
         return new Name(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     private static void validateNameFormat(String name) {
         Matcher matcher = carNamePattern.matcher(name);
 
