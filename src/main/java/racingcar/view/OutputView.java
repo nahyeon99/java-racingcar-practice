@@ -12,6 +12,7 @@ public class OutputView {
 
     public void printResultOnceByAll(List<MatchDto> matchDtos) {
         matchDtos.forEach(this::printResultOnceByOne);
+        System.out.println();
     }
 
     public void printWinners(List<NameDto> nameDtos) {
@@ -21,6 +22,7 @@ public class OutputView {
                         .toList());
 
         System.out.printf(OutputMessage.RESULT_FORMAT.message, OutputMessage.WINNER_MESSAGE.message, names);
+        System.out.println();
     }
 
     private void printResultOnceByOne(MatchDto matchDto) {
@@ -28,7 +30,6 @@ public class OutputView {
                 matchDto.name(),
                 generatePositionFormat(matchDto.position()));
 
-        System.out.println();
         System.out.println();
     }
 

@@ -8,10 +8,14 @@ import java.util.List;
 public class InputView {
 
     public List<String> inputCarNames() {
+        System.out.println(OutputMessage.INPUT_NAMES.message);
+
         return readList(readLine(), OutputMessage.NAMES_DELIMITER.message);
     }
 
     public int inputTryCount() {
+        System.out.println(OutputMessage.INPUT_TRY_COUNT.message);
+
         return readNumber(readLine());
     }
 
