@@ -14,4 +14,8 @@ public class Position {
     int getPosition() {
         return position;
     }
+
+    void increase() {
+        position++;
+    }
 }
