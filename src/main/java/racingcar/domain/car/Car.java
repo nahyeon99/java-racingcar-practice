@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.dto.MatchResult;
+import racingcar.domain.MovePredicate;
 
 public class Car {
     private final Name name;
@@ -15,17 +15,17 @@ public class Car {
         return new Car(Name.from(name), Position.from());
     }
 
-    MatchResult move() {
-        position.increase();
-
-        return MatchResult.of(name.getName(), position.getPosition());
+    void move(MovePredicate movePredicate) {
+        if (movePredicate.testRandom()) {
+            position.increase();
+        }
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position.getPosition();
     }
 
-    String getName() {
+    public String getName() {
         return name.getName();
     }
 

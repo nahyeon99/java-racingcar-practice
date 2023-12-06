@@ -2,8 +2,8 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.dto.MatchResult;
-import racingcar.dto.WinnerResult;
+import racingcar.dto.CarDto;
+import racingcar.dto.WinnerDto;
 
 public class OutputView {
 
@@ -11,11 +11,13 @@ public class OutputView {
         System.out.println(Message.RESULT_TITLE.korean);
     }
 
-    public void printResultOfOneExecuton(List<MatchResult> results) {
-           results.forEach(this::printResultOfOneCar);
+    public void printResultOfOneExecuton(List<CarDto> results) {
+        results.forEach(this::printResultOfOneCar);
+
+        System.out.println();
     }
 
-    private void printResultOfOneCar(MatchResult result) {
+    private void printResultOfOneCar(CarDto result) {
         System.out.printf(Message.RESULT_OF_CAR_MOVING_FORMAT.korean,
                 result.name(),
                 Message.DELIMITER_OF_MOVING.korean.repeat(result.position()));
@@ -23,7 +25,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinners(List<WinnerResult> results) {
+    public void printWinners(List<WinnerDto> results) {
         String winners = results.stream()
                 .map(result -> result.name())
                 .collect(Collectors.joining(Message.DELIMITER_OF_WINNER.korean));

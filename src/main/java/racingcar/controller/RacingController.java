@@ -4,8 +4,7 @@ import java.util.List;
 import racingcar.domain.TryCount;
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarsFactory;
-import racingcar.dto.MatchResult;
-import racingcar.dto.WinnerResult;
+import racingcar.dto.WinnerDto;
 import racingcar.service.RacingService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -40,20 +39,21 @@ public class RacingController {
     }
 
     private void match(TryCount tryCount, Cars cars) {
-        for (int i = 0; i < tryCount.getCount(); i++) {
-            List<MatchResult> matchResults = racingService.moveCars(cars);
+        outputView.printResultTitle();
 
-            outputView.printResultOfOneExecuton(matchResults);
+        for (int i = 0; i < tryCount.getCount(); i++) {
+            racingService.moveCars(cars);
+            outputView.printResultOfOneExecuton(cars.getCars());
         }
     }
 
     private void printWinners(Cars cars) {
-        List<WinnerResult> winnerResults = calculateWinners(cars);
+        List<WinnerDto> winnerResults = calculateWinners(cars);
 
         outputView.printWinners(winnerResults);
     }
 
-    private List<WinnerResult> calculateWinners(Cars cars) {
+    private List<WinnerDto> calculateWinners(Cars cars) {
         return cars.getWinners();
     }
 }

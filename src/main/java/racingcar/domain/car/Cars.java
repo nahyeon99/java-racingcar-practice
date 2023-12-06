@@ -3,8 +3,8 @@ package racingcar.domain.car;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.MovePredicate;
-import racingcar.dto.MatchResult;
-import racingcar.dto.WinnerResult;
+import racingcar.dto.CarDto;
+import racingcar.dto.WinnerDto;
 import racingcar.exception.ExceptionMessage;
 
 public class Cars {
@@ -24,19 +24,20 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public List<MatchResult> moveCars(MovePredicate movePredicate) {
-        return cars.stream()
-                .filter(car -> movePredicate.testRandom())
-                .map(Car::move)
-                .collect(Collectors.toUnmodifiableList());
+    public void moveCars(MovePredicate movePredicate) {
+        cars.forEach(car -> car.move(movePredicate));
     }
 
-    public List<WinnerResult> getWinners() {
+    public List<CarDto> getCars() {
+        return CarDto.of(cars);
+    }
+
+    public List<WinnerDto> getWinners() {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.isPosition(maxPosition))
-                .map(car -> WinnerResult.of(car.getName()))
+                .map(car -> WinnerDto.of(car.getName()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
